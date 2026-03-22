@@ -1,1 +1,28 @@
-
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Quic Broadband",
+        "description": "Enter your Quic API key from the Quic account portal.",
+        "data": {
+          "api_key": "API Key"
+        }
+      },
+      "select_service": {
+        "title": "Select Service",
+        "description": "Multiple services found on this API key. Select one to monitor.",
+        "data": {
+          "service_id": "Service"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid API key.",
+      "cannot_connect": "Could not connect to the Quic API. Check your network and try again.",
+      "no_services": "No services found for this API key."
+    },
+    "abort": {
+      "already_configured": "This service is already configured."
+    }
+  }
+}
