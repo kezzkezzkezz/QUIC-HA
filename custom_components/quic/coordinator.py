@@ -35,7 +35,7 @@ class QuicCoordinator(DataUpdateCoordinator):
             resp = await session.get(
                 SESSION_ENDPOINT,
                 params={"service": self.service_id},
-                headers={"Authorization": f"Bearer {self.api_key}"},
+                headers={"X-API-Key": self.api_key},
             )
             resp.raise_for_status()
             data = await resp.json()
