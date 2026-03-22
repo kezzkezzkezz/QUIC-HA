@@ -11,11 +11,16 @@ from .const import SESSION_ENDPOINT, UPDATE_INTERVAL_MINUTES
 _LOGGER = logging.getLogger(__name__)
 
 
-def parse_quic_date(obj: dict):
-    """Extract datetime from Quic's {'$date': '...'} timestamp format."""
-    if obj and "$date" in obj:
-        return dt_util.parse_datetime(obj["$date"])
-    return None
+def parse_quic_date(value):
+    """Parse a plain ISO timestamp string from the Quic API."""
+    if not value:
+        return None
+    if isinstance(value, dict):
+        # Handle legacy {'$date': '...'} format just in case
+        value = value.get("$date")
+    if not value:
+        return None
+    return dt_util.parse_datetime(value)
 
 
 class QuicCoordinator(DataUpdateCoordinator):
@@ -40,7 +45,6 @@ class QuicCoordinator(DataUpdateCoordinator):
             resp.raise_for_status()
             data = await resp.json()
 
-            # Pre-parse timestamps so sensors don't have to
             data["_parsed_last_radius"] = parse_quic_date(data.get("lastRadiusUpdate"))
             data["_parsed_expires"] = parse_quic_date(data.get("sessionExpiresAt"))
 
