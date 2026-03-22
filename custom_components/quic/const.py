@@ -1,1 +1,11 @@
+DOMAIN = "quic"
+BASE_URL = "https://api.quic.nz"
+SERVICES_ENDPOINT = f"{BASE_URL}/services"
+SESSION_ENDPOINT = f"{BASE_URL}/session"
+WEATHERMAP_ENDPOINT = f"{BASE_URL}/weathermap"
 
+CONF_API_KEY = "api_key"
+CONF_SERVICE_ID = "service_id"
+
+UPDATE_INTERVAL_MINUTES = 5
+WEATHERMAP_CACHE_SECONDS = 360
