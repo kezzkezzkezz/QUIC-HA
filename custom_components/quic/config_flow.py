@@ -21,7 +21,7 @@ class QuicConfigFlow(config_entries.ConfigFlow):
             try:
                 resp = await session.get(
                     SERVICES_ENDPOINT,
-                    headers={"Authorization": f"Bearer {self._api_key}"},
+                    headers={"X-API-Key": self._api_key},
                 )
                 if resp.status == 403:
                     errors["base"] = "invalid_auth"
