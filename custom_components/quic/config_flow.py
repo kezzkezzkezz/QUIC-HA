@@ -20,22 +20,16 @@ class QuicConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             self._api_key = user_input[CONF_API_KEY]
             session = async_get_clientsession(self.hass)
             try:
-                _LOGGER.warning("Quic: attempting to connect to %s", SERVICES_ENDPOINT)
                 resp = await session.get(
                     SERVICES_ENDPOINT,
                     headers={"X-API-Key": self._api_key},
                 )
-                _LOGGER.warning("Quic: response status %s", resp.status)
-                body = await resp.text()
-                _LOGGER.warning("Quic: response body %s", body)
-
                 if resp.status == 403:
                     errors["base"] = "invalid_auth"
                 elif resp.status != 200:
                     errors["base"] = "cannot_connect"
                 else:
-                    import json
-                    data = json.loads(body)
+                    data = await resp.json()
                     self._service_ids = data.get("serviceIds", [])
                     if not self._service_ids:
                         errors["base"] = "no_services"
@@ -45,7 +39,7 @@ class QuicConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         return await self.async_step_select_service()
 
             except Exception as err:
-                _LOGGER.warning("Quic: exception %s", err)
+                _LOGGER.error("Quic: config flow error: %s", err)
                 errors["base"] = "cannot_connect"
 
         return self.async_show_form(
