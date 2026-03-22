@@ -19,7 +19,7 @@ A custom HACS integration for monitoring your [Quic Broadband NZ](https://quic.n
 
 - Home Assistant 2026.3.0 or newer
 - HACS installed
-- A Quic Broadband account with an API key (generated in the [Quic account portal]([https://account.quic.nz/index.php?rp=/login]))
+- A Quic Broadband account with an API key (generated in the [Quic account portal](https://account.quic.nz/index.php?rp=/login))
 
 ---
 
