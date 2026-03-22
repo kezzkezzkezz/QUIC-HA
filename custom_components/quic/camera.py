@@ -62,7 +62,7 @@ class QuicWeatherMapCamera(Camera):
         try:
             resp = await session.get(
                 WEATHERMAP_ENDPOINT,
-                headers={"Authorization": f"Bearer {self._api_key}"},
+                headers={"X-API-Key": self._api_key},
             )
             resp.raise_for_status()
             self._cached_image = await resp.read()
