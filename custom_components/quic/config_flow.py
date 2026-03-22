@@ -2,14 +2,12 @@ import logging
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-
 from .const import DOMAIN, CONF_API_KEY, CONF_SERVICE_ID, SERVICES_ENDPOINT
 
 _LOGGER = logging.getLogger(__name__)
 
 
-@config_entries.HANDLERS.register(DOMAIN)
-class QuicConfigFlow(config_entries.ConfigFlow):
+class QuicConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
     _api_key: str
@@ -22,14 +20,14 @@ class QuicConfigFlow(config_entries.ConfigFlow):
             self._api_key = user_input[CONF_API_KEY]
             session = async_get_clientsession(self.hass)
             try:
-                _LOGGER.debug("Quic: attempting to connect to %s", SERVICES_ENDPOINT)
+                _LOGGER.warning("Quic: attempting to connect to %s", SERVICES_ENDPOINT)
                 resp = await session.get(
                     SERVICES_ENDPOINT,
                     headers={"X-API-Key": self._api_key},
                 )
-                _LOGGER.debug("Quic: response status %s", resp.status)
+                _LOGGER.warning("Quic: response status %s", resp.status)
                 body = await resp.text()
-                _LOGGER.debug("Quic: response body %s", body)
+                _LOGGER.warning("Quic: response body %s", body)
 
                 if resp.status == 403:
                     errors["base"] = "invalid_auth"
@@ -47,7 +45,7 @@ class QuicConfigFlow(config_entries.ConfigFlow):
                         return await self.async_step_select_service()
 
             except Exception as err:
-                _LOGGER.exception("Quic: unexpected error during config flow: %s", err)
+                _LOGGER.warning("Quic: exception %s", err)
                 errors["base"] = "cannot_connect"
 
         return self.async_show_form(
