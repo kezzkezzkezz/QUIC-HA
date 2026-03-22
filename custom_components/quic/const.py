@@ -1,5 +1,5 @@
 DOMAIN = "quic"
-BASE_URL = "https://api.quic.nz"
+BASE_URL = "https://api.quic.nz/v1"
 SERVICES_ENDPOINT = f"{BASE_URL}/services"
 SESSION_ENDPOINT = f"{BASE_URL}/session"
 WEATHERMAP_ENDPOINT = f"{BASE_URL}/weathermap"
