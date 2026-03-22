@@ -147,7 +147,7 @@ Session data is polled every **5 minutes**, matching Quic's server-side cache TT
 
 ## Issues & Contributions
 
-Found a bug? Open an issue or PR at [github.com/kezzkezzkezz/quic-ha-integration](https://github.com/kezzkezzkezz/quic-ha-integration/issues).
+Found a bug? Open an issue or PR at [github.com/kezzkezzkezz/QUIC-HA](https://github.com/kezzkezzkezz/QUIC-HA/issues).
 
 ---
 
