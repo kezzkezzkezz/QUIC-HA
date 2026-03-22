@@ -1,1 +1,12 @@
-
+{
+  "domain": "quic",
+  "name": "Quic Broadband",
+  "version": "0.1.0",
+  "config_flow": true,
+  "documentation": "https://github.com/kezzkezzkezz/quic-ha-integration",
+  "issue_tracker": "https://github.com/kezzkezzkezz/quic-ha-integration/issues",
+  "dependencies": [],
+  "codeowners": ["@kezzkezzkezz"],
+  "iot_class": "cloud_polling",
+  "requirements": []
+}
