@@ -29,7 +29,7 @@ A custom HACS integration for monitoring your [Quic Broadband NZ](https://quic.n
 
 1. In Home Assistant, go to **HACS → Integrations**
 2. Click the three-dot menu → **Custom repositories**
-3. Add `https://github.com/kezzkezzkezz/quic-ha-integration` with category **Integration**
+3. Add `https://github.com/kezzkezzkezz/quic-ha` with category **Integration**
 4. Click **Download**
 5. Restart Home Assistant
 
